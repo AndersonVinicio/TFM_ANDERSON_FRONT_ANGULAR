@@ -5,7 +5,10 @@ import { ViewCitasComponent } from './pages/view-citas/view-citas.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,ViewCitasComponent],
+  imports: [
+    RouterOutlet,
+    ViewCitasComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

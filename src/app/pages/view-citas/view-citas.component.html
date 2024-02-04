@@ -1,1 +1,14 @@
-<p>COMPONENETE DENTRO DE CITAS DENTRO DE LA CARPETA PAGES</p>
+<section>
+    <div class="contenedor">
+        <div class="contenedor-calendario">
+            <!-- <app-calendario-primeng></app-calendario-primeng>  -->
+            <div class="card flex justify-content-center">
+                <p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true"></p-calendar>
+            </div>
+            <p>Fecha: {{ date }}</p>
+        </div>
+        <div class="contenedor-horas">
+          
+        </div>
+    </div>
+</section>

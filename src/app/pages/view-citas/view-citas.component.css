@@ -1,0 +1,21 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  flex-wrap: wrap;
+}
+.contenedor-calendario {
+  /* background-color: red; */
+  min-width: 100%;
+  min-height: auto;
+}
+.contenedor-horas {
+  min-width: 100%;
+  min-height: auto;
+}
+/* section {
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  flex-wrap: wrap;
+} */
