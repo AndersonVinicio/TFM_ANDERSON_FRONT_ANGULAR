@@ -8,14 +8,30 @@
   /* background-color: red; */
   min-width: 100%;
   min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 .contenedor-horas {
   min-width: 100%;
   min-height: auto;
 }
-/* section {
+
+div.contenedor-horas table {
+  width: 100%;
+}
+
+div.contenedor-horas table tbody tr td {
+  border-bottom: 2px solid gray;
+}
+div.contenedor-horas header {
   display: flex;
-  flex-direction: column;
-  flex-basis: auto;
-  flex-wrap: wrap;
-} */
+  justify-content: space-around;
+  background-color: rgb(179, 170, 170);
+}
+.contenedor-datos-reserva {
+  display: flex;
+  justify-content: space-around;
+}

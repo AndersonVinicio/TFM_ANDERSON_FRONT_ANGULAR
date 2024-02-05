@@ -1,14 +1,47 @@
 <section>
     <div class="contenedor">
         <div class="contenedor-calendario">
-            <!-- <app-calendario-primeng></app-calendario-primeng>  -->
             <div class="card flex justify-content-center">
                 <p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true"></p-calendar>
             </div>
             <p>Fecha: {{ date }}</p>
         </div>
         <div class="contenedor-horas">
-          
+            <!-- <table>
+                <thead>
+                  <tr >
+                    <th>HORA</th>
+                    <th>NOMBRE</th>
+                    <th>Trabajo a realizar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @for (hora of horas ; track 0) {
+                        <tr>
+                            <td>{{ hora }}</td>
+                            <td>Ana García</td>
+                            <td>Reunión con el cliente</td>
+                        </tr>
+                    }
+                  
+
+                  
+                </tbody>
+            </table> -->
+            <header>
+                <div class="contenedor-tiutlo-hora">HORA</div>
+                <div class="contenedor-tiutlo-nombre">NOMBRE</div>
+                <div class="contenedor-titulo-trabajoRealizar">TRABAJO A REALIZAR</div>
+            </header>
+            @for (hora of horas; track 0) {
+                <div class="contenedor-datos-reserva">
+                    <div class="contenedor-datos-hora">{{ hora }}</div>
+                    <div class="contenedor-datos-nombre">Anderson</div>
+                    <div class="contenedor-datos-trabajoRealizar">Corte de pelo</div>
+                </div>
+                <hr>
+            }
+            
         </div>
     </div>
 </section>
