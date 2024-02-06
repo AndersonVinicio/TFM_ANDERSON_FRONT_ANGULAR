@@ -1,32 +1,76 @@
 .contenedor {
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   flex-basis: auto;
   flex-wrap: wrap;
+  /* background-color: red; */
+}
+section {
+  background-color: black;
 }
 .contenedor-calendario {
-  /* background-color: red; */
-  min-width: 100%;
-  min-height: auto;
+  width: 100%;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  padding: 10px;
+  background-color: #fffffe;
+  overflow: hidden;
+  position: fixed;
+  z-index: 10;
 }
 .contenedor-horas {
   min-width: 100%;
-  min-height: auto;
+  max-height: 100px;
+  position: relative;
+  top: 350px;
+  z-index: 1;
 }
 
 div.contenedor-horas table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+div.contenedor-horas table thead {
+  position: sticky;
+  top: 350px;
+  height: 40px;
+  background-color: rgb(107, 106, 106);
+
+  /* left: 0px;
+  right: 0px; */
+}
+
+div.contenedor-horas table tbody tr {
+  border-bottom: 2px solid gray;
 }
 
 div.contenedor-horas table tbody tr td {
-  border-bottom: 2px solid gray;
+  padding: 5px;
+}
+.celda-trabajo {
+  width: 200px;
+}
+.contenedor-celda-trabajo {
+  width: 100%;
+  max-height: 80px;
+  padding: 5px;
+  overflow: auto;
+}
+
+div.contenedor-horas table tbody tr:nth-child(even) {
+  background-color: rgb(148, 142, 142, 0.2);
 }
 div.contenedor-horas header {
+  position: fixed;
+  left: 0px;
+  right: 0px;
   display: flex;
   justify-content: space-around;
   background-color: rgb(179, 170, 170);
