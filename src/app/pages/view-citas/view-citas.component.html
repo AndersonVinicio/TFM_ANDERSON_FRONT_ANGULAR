@@ -2,9 +2,11 @@
     <div class="contenedor">
         <div class="contenedor-calendario">
             <div class="card flex justify-content-center">
-                <p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true"></p-calendar>
+                <p-calendar class="max-w-full" [(ngModel)]="dateCalendario" [inline]="true" [showWeek]="true" dateFormat="dd.mm.yy" (onSelect)="selectDate()"></p-calendar>
             </div>
+            <!-- <input type="text" name="myInput" [ngModel]="dateFormat"> -->
         </div>
+        
 
         <div class="contenedor-horas">
             <table>
@@ -16,13 +18,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @for (hora of horas ; track 0) {
-                        <tr>
-                            <td class="celda-hora">{{ hora }}</td>
-                            <td class="celda-nombre">Ana García</td>
+                    @for (dato of datosCitas ; track dato ) {
+                        <tr (click)="getDatoCita(dato)">
+                            <td class="celda-hora" id="hora">{{ dato.hora }}</td>
+                            <td class="celda-nombre" id="nombre">{{ dato.nombre }}</td>
                             <td class="celda-trabajo">
-                                <div class="contenedor-celda-trabajo">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, qui nobis nam saepe sint dolorum, impedit quam suscipit quaerat atque ad eum eaque beatae dolorem maxime itaque voluptatibus, corrupti earum similique mollitia illum quod porro nesciunt deserunt? Sint, aut. Praesentium numquam, voluptatem culpa sint eos nobis impedit porro voluptate, fugit unde, nihil blanditiis autem nostrum. Repudiandae porro omnis nostrum aliquid error sint, provident libero! Labore debitis error fugit accusantium dignissimos est facilis! Voluptate, ullam quod, eum enim veritatis voluptas sunt modi quam perferendis animi veniam, totam excepturi? Asperiores, nisi numquam voluptas soluta nostrum esse iste culpa aspernatur dolorum omnis impedit iusto nemo expedita ad, illum quos commodi repudiandae voluptatibus quaerat dicta beatae blanditiis laborum ullam? Modi, eveniet. Vel nemo quisquam quaerat assumenda ratione rem nesciunt ipsam, ad neque, quis, ipsa inventore quae ea voluptatem sint totam praesentium hic obcaecati. Ullam inventore hic, maxime labore sequi dolore unde quidem dolorum culpa? Quam similique odio aliquam officiis. Placeat quibusdam hic enim dolor quo ipsa commodi. Culpa blanditiis velit odit consequatur expedita autem fugit ex magnam possimus reprehenderit? Dolore perferendis, at quos vitae quis neque nostrum consequatur ut asperiores repellat doloribus, corporis quibusdam possimus alias, tenetur magni minima distinctio. Ex assumenda labore maiores.
+                                <div class="contenedor-celda-trabajo" id="trabajo">
+                                    <!-- {{ dato.trabajo }} -->
+                                    {{dato.trabajo}}
                                 </div>
                             </td>
                             
