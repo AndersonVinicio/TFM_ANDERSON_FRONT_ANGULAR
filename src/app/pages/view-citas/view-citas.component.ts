@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { ComponentesPrimengModule } from '../../modulos/componentes-primeng-module/componentes-primeng.module';
+import { ComponentesPrimengModule, DialogService, DynamicDialogRef} from '../../modulos/componentes-primeng-module/componentes-primeng.module';
 import { debug, log } from 'console';
 import { Observable } from 'rxjs';
 import { Citas } from '../../interfaces/citas';
+import { ComponenteCuadroDialogoComponent } from '../../componentes/componentesPrimeNg/componente-cuadro-dialogo/componente-cuadro-dialogo.component';
+
+
+
 
 
 
@@ -11,8 +15,14 @@ import { Citas } from '../../interfaces/citas';
   selector: 'app-view-citas',
   standalone: true,
   // imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatIconModule],
-  imports: [ComponentesPrimengModule],
-  providers:[],
+  imports: [
+    ComponentesPrimengModule,
+    ComponenteCuadroDialogoComponent  
+  ],
+  providers:[
+    DialogService,
+    DynamicDialogRef
+  ],
   templateUrl: './view-citas.component.html',
   styleUrl: './view-citas.component.css'
 })
@@ -23,10 +33,13 @@ export class ViewCitasComponent{
   dateFormat:string | undefined;
   datosCitas: Citas [] = [];
 
+  //variable para el cuadro de dialogo
+  ref: DynamicDialogRef | undefined;
 
-  constructor(){
+  constructor(public dialogService: DialogService){
     // console.log(this.dateFormat)
     this.IntevaloHoras();
+    
   }
   IntevaloHoras(){
     let HorasInicio:number = 0;
@@ -54,7 +67,26 @@ export class ViewCitasComponent{
   
   getDatoCita(dato:Citas){
     let contenido = dato;
-    alert(`hora:${contenido.hora}\nNombre:${contenido.nombre}\nTrabajo:${contenido.trabajo}`);
+    alert(dato);
+    this.show(dato);
+
+    // console.log(this.ref)
+  }
+  show(dato:Citas){
+    this.ref =  this.dialogService.open(ComponenteCuadroDialogoComponent,
+      {
+        header:'NUEVA CITA',
+        data:{
+          datosCita: dato
+        },
+        width: '80%'
+      });
+
+    this.ref.onClose.subscribe((data:any)=>{
+      if(data){
+        alert('dato que viene desde el formulario')
+      }
+    });
   }
 
 }
