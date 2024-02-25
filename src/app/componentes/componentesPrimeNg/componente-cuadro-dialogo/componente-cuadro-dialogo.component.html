@@ -1,8 +1,16 @@
 <section>
     <form action="" method="post">
-        <h1>NUEVA CIATA</h1>
+        <!-- <h1>NUEVA CIATA</h1>
         <p>HORA: {{ datosCita.hora }}</p>
         <p>NOMBRE: {{ datosCita.nombre }}</p>
-        <p>TRABAJO: {{ datosCita.trabajo }}</p>
+        <p>TRABAJO: {{ datosCita.trabajo }}</p> -->
+        <label for="inputNombre">NOMBRE:</label>
+        <input type="text" name="inputNombre" id="inputNombre" [value]="datosCita.nombre">
+        <label for="inputTime">Hora</label>
+        <input type="datetime" name="inputTime" id="inputTime" [value]="datosCita.hora" disabled>
+        <label for="inputDate">Fecha</label>
+        <input type="date" name="inputDate" id="inputDate" [value]="datosCita.fecha" disabled>
+        <label for="textAreaTrabajo">Trabajo</label>
+        <textarea name="textAreaTrabajo" id="textAreaTrabajo" cols="30" rows="10" [value]="datosCita.trabajo"></textarea>
     </form>
 </section>
