@@ -1,0 +1,36 @@
+h1 {
+  text-align: center;
+}
+
+div.contenedor_formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  /* background-color: black; */
+}
+
+div.contenedor_inputs_labels {
+  background-color: red;
+
+  /* width: 100%; */
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  /* width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; */
+}
+.contenedor_input_nombre,
+.contenedor_input_hora,
+.contenedor_input_fecha,
+.contenedor_textArea {
+  display: flex;
+  justify-content: space-between;
+}

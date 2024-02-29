@@ -201,16 +201,17 @@ export class ViewCitasComponent{
   show(dato:Citas){
     this.ref =  this.dialogService.open(ComponenteCuadroDialogoComponent,
       {
-        header:'NUEVA CITA',
+        // header:'CITA',
         data:{
           datosCita: dato
         },
-        width: '80%'
+        width: '80%',
       });
 
     this.ref.onClose.subscribe((data:any)=>{
       if(data){
-        alert('dato que viene desde el formulario')
+        console.log('esto es lo que recibe el json '+JSON.stringify(data));
+        this.delete_cita(data);
       }
     });
   }
@@ -234,4 +235,22 @@ export class ViewCitasComponent{
     }
   }
 
+  delete_cita(cita_delete:Citas){
+    const index_cita_delete = this.BD_PRUEBA.findIndex(
+      cita =>
+      cita.fecha === cita_delete.fecha && 
+      cita.hora === cita_delete.hora &&
+      cita.nombre === cita_delete.nombre &&
+      cita.trabajo === cita_delete.trabajo)
+    if(index_cita_delete !== -1){
+      //console.log(index_cita_delete);
+      this.BD_PRUEBA[index_cita_delete] = {
+          hora: cita_delete.hora,
+          fecha: cita_delete.fecha.toString(),
+          nombre: '',
+          trabajo: ''
+      }
+      //console.log(JSON.stringify(this.BD_PRUEBA[index_cita_delete]));
+    }
+  }
 }

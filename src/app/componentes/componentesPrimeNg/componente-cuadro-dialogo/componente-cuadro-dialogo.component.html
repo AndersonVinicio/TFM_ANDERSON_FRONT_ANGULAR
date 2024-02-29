@@ -1,16 +1,34 @@
 <section>
+    <h1>
+        CITA
+    </h1>
     <form action="" method="post">
-        <!-- <h1>NUEVA CIATA</h1>
-        <p>HORA: {{ datosCita.hora }}</p>
-        <p>NOMBRE: {{ datosCita.nombre }}</p>
-        <p>TRABAJO: {{ datosCita.trabajo }}</p> -->
-        <label for="inputNombre">NOMBRE:</label>
-        <input type="text" name="inputNombre" id="inputNombre" [value]="datosCita.nombre">
-        <label for="inputTime">Hora</label>
-        <input type="datetime" name="inputTime" id="inputTime" [value]="datosCita.hora" disabled>
-        <label for="inputDate">Fecha</label>
-        <input type="date" name="inputDate" id="inputDate" [value]="datosCita.fecha" disabled>
-        <label for="textAreaTrabajo">Trabajo</label>
-        <textarea name="textAreaTrabajo" id="textAreaTrabajo" cols="30" rows="10" [value]="datosCita.trabajo"></textarea>
+        <div class="contenedor_formulario">
+            <div class="contenedor_inputs_labels">
+                <div class="contenedor_input_nombre">
+                    <label for="inputNombre">NOMBRE:</label>
+                    <input type="text" name="inputNombre" id="inputNombre" [value]="datosCita.nombre">
+                </div>
+                <div class="contenedor_input_hora">
+                    <label for="inputTime">Hora:</label>
+                    <input type="datetime" name="inputTime" id="inputTime" [value]="datosCita.hora" disabled>
+                </div>
+                <div class="contenedor_input_fecha">
+                    <label for="inputDate">Fecha:</label>
+                    <input type="date" name="inputDate" id="inputDate" [value]="datosCita.fecha" disabled>
+                </div>
+                <div class="contenedor_textArea">
+                    <label for="textAreaTrabajo">Trabajo:</label>
+                    <textarea name="textAreaTrabajo" id="textAreaTrabajo" cols="20" rows="5" [value]="datosCita.trabajo"></textarea>
+                </div>
+            </div>
+              
+            <div class="contenedor_botones">
+                <p-button label="Agregar Cita" [rounded]="true" severity="success" type="submit"></p-button>
+                <p-button label="ELIMINAR Cita" [rounded]="true" severity="danger" (onClick)="delete_cita()"></p-button>
+            </div>
+        
+        </div>
+        
     </form>
 </section>

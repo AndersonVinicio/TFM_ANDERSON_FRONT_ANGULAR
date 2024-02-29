@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 //CUADRO DE DIALOGO
 import { DynamicDialogModule, DialogService, DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
-//import { ComponenteCuadroDialogoComponent } from '../../componentes/componentesPrimeNg/componente-cuadro-dialogo/componente-cuadro-dialogo.component';
+//BOTONES
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -16,13 +17,15 @@ import { DynamicDialogModule, DialogService, DynamicDialogRef, DynamicDialogConf
     CommonModule,
     FormsModule,
     CalendarModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    ButtonModule
     //ComponenteCuadroDialogoComponent
   ],
   exports: [
     FormsModule,
     CalendarModule,
     DynamicDialogModule,
+    ButtonModule
     //ComponenteCuadroDialogoComponent
   ],
   providers: [
@@ -32,5 +35,5 @@ import { DynamicDialogModule, DialogService, DynamicDialogRef, DynamicDialogConf
   ]
 })
 export class ComponentesPrimengModule {}
-export { DialogService, DynamicDialogRef, DynamicDialogModule, DynamicDialogConfig };
+export { DialogService, DynamicDialogRef, DynamicDialogModule, DynamicDialogConfig, ButtonModule, CalendarModule, FormsModule };
 
