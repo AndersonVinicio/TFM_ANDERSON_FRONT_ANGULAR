@@ -12,10 +12,10 @@ div.contenedor_formulario {
 }
 
 div.contenedor_inputs_labels {
-  background-color: red;
+  /* background-color: red; */
 
-  /* width: 100%; */
-  width: 40%;
+  width: 100%;
+  /* width: 40%; */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -33,4 +33,18 @@ div.contenedor_inputs_labels {
 .contenedor_textArea {
   display: flex;
   justify-content: space-between;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 900px) {
+  div.contenedor_inputs_labels {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 768px) and (width < 900px) {
+  div.contenedor_inputs_labels {
+    width: 50%;
+  }
 }
