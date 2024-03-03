@@ -17,6 +17,10 @@
                     <label for="inputDate">Fecha:</label>
                     <input type="date" name="inputDate" id="inputDate" [value]="datosCita.fecha" disabled>
                 </div>
+                <div class="contenedor_input_telefono">
+                    <label for="inputDate">Telefono:</label>
+                    <input type="tel" name="inputDate" id="inputDate" pattern="^\d{9}$" [value]="datosCita.telefono">
+                </div>
                 <div class="contenedor_textArea">
                     <label for="textAreaTrabajo">Trabajo:</label>
                     <textarea name="textAreaTrabajo" id="textAreaTrabajo" cols="20" rows="5" [value]="datosCita.trabajo"></textarea>

@@ -20,7 +20,8 @@ export class ComponenteCuadroDialogoComponent {
     hora:'',
     fecha: new Date,
     nombre:'',
-    trabajo:''
+    trabajo:'',
+    telefono:''
   };
   date_calendario:Date = new Date();
   fecha!: Date;
@@ -35,6 +36,7 @@ export class ComponenteCuadroDialogoComponent {
     this.datosCita.fecha = format(datos.datosCita.fecha,'YYYY-MM-DD')
     this.date_calendario = datos.datosCita.fecha
     this.datosCita.nombre = datos.datosCita.nombre;
+    this.datosCita.telefono = datos.datosCita.telefono;
     this.datosCita.trabajo = datos.datosCita.trabajo;
   }
   ngOnInit(): void{}

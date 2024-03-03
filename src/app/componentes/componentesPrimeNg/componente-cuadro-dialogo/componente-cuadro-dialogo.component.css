@@ -30,7 +30,8 @@ div.contenedor_inputs_labels {
 .contenedor_input_nombre,
 .contenedor_input_hora,
 .contenedor_input_fecha,
-.contenedor_textArea {
+.contenedor_textArea,
+.contenedor_input_telefono {
   display: flex;
   justify-content: space-between;
 }

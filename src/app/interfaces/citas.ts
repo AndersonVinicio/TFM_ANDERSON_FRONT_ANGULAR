@@ -3,4 +3,6 @@ export interface Citas {
     fecha:Date | string;
     nombre:string;
     trabajo:string;
+    telefono:string;
+    delete?:boolean;
 }

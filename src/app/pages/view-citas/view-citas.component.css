@@ -55,7 +55,7 @@ div.contenedor-horas table tbody tr td {
   padding: 5px;
 }
 .celda-trabajo {
-  width: 200px;
+  width: 150px;
 }
 .contenedor-celda-trabajo {
   width: 100%;
@@ -79,3 +79,20 @@ div.contenedor-horas header {
   display: flex;
   justify-content: space-around;
 }
+
+td {
+  text-align: center;
+}
+/* 
+.celda-hora {
+  background-color: rebeccapurple;
+}
+.celda-trabajo {
+  background-color: aqua;
+}
+.celda-telefono {
+  background-color: red;
+}
+.celda-nombre {
+  background-color: blue;
+} */
