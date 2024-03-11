@@ -19,7 +19,7 @@ export class ComponenteCuadroDialogoComponent {
   datosCita: Citas = {
     hora:'',
     fecha: new Date,
-    nombre:'',
+    nombre_cliente:'',
     trabajo:'',
     telefono:''
   };
@@ -35,14 +35,14 @@ export class ComponenteCuadroDialogoComponent {
     // EL METODO FORMAT DEVUELVE UN STRING.
     this.datosCita.fecha = format(datos.datosCita.fecha,'YYYY-MM-DD')
     this.date_calendario = datos.datosCita.fecha
-    this.datosCita.nombre = datos.datosCita.nombre;
+    this.datosCita.nombre_cliente = datos.datosCita.nombre_cliente;
     this.datosCita.telefono = datos.datosCita.telefono;
     this.datosCita.trabajo = datos.datosCita.trabajo;
   }
   ngOnInit(): void{}
 
   delete_cita(){
-    if(this.datosCita.nombre!== '' && this.datosCita.trabajo!==''){
+    if(this.datosCita.nombre_cliente!== '' && this.datosCita.trabajo!==''){
       this.ref.close(this.datosCita);
     }else{
       alert('NO SE PUEDE ELIMINAR ESTA CITA POR QUE LA HORA ESTA LIBRE');

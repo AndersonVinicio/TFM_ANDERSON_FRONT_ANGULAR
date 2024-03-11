@@ -1,7 +1,9 @@
+import { Time } from "@angular/common";
+
 export interface Citas {
     hora:string;
     fecha:Date | string;
-    nombre:string;
+    nombre_cliente:string;
     trabajo:string;
     telefono:string;
     delete?:boolean;
