@@ -185,13 +185,18 @@ export class ViewCitasComponent implements OnInit{
   constructor(public dialogService: DialogService, private service:ApiCitasService){}
   ngOnInit(): void {
  
-    this.get_citas_bd();
-    this.get_citas(this.dateCalendario);
+    console.log(this.datosCitas);
+    //this.get_citas_bd();
+    this.IntevaloHoras(new Date());
+    this.get_citas(new Date());
+  
     
-    console.log(this.datosCitaApi)
+    //console.log('ARRAY'+this.datosCitaApi)
   }
 
+  //ESTO SE USA PARA CREAR EL INTERVALO DE HORAS CON UN GAP DE 15 MINUTOS ENTRE CADA HORA
   IntevaloHoras(fecha_actual:Date){
+    //console.log('se ejecuta el metodo intervalo horas');
     let HorasInicio:number = 0;
     let HorasFin:number = 23;
     let intervaloHorasMinutos:number = 15;
@@ -202,6 +207,7 @@ export class ViewCitasComponent implements OnInit{
         let minuto = j.toString().padStart(2, "0");
         // arrayHoras.push(`${hora}:${minuto}`);
         this.datosCitas?.push({
+          id:0,
           hora: `${hora}:${minuto}:00`,
           fecha: fecha_actual,
           nombre_cliente: '',
@@ -213,15 +219,23 @@ export class ViewCitasComponent implements OnInit{
     }
   }
 
+  /**
+   * METODO QUE SE USA EN EL DOM PARA OBTENER LA FECHA QUE SELECCIONA EL USUARIO DESDE EL CALENDARIO
+   */
   selectDate(){
-    //OBTENEMOS LA FECHA SELECCIONADA DESDE EL CALENDARIO
+    //console.log('fecha_anterior'+this.dateCalendario)
     this.get_citas(this.dateCalendario);
-    alert(this.dateCalendario);
+    //console.log('fecha despues '+ this.dateCalendario)
   }
+  
+  /**
+   * Metodo que se utiliza en el dom para que cuando el usuario relize un click sobre una hora 
+   * le devuelva los datos de esa zona horaria
+   */
   getDatoCita(dato:Citas){
     // alert(dato);
     this.show(dato);
-
+    //console.log(dato);
     // console.log(this.ref)
   }
   show(dato:Citas){
@@ -236,21 +250,41 @@ export class ViewCitasComponent implements OnInit{
 
     this.ref.onClose.subscribe((data:any)=>{
       if(data){
+        console.log(data.fecha)
+        this.get_citas(this.dateCalendario);
         console.log('esto es lo que recibe el json '+JSON.stringify(data));
         //this.delete_cita(data);
+        console.log('despues de agregar la nueva cita'+JSON.stringify(this.datosCitas))
       }
     });
   }
 
+  /**
+   * 
+   * @param fecha_actual 
+   * EN EL PARAMETRO LE PASAMOS LA FECHA QUE EL USUARIO SELECCIONA EN EL CALENDARIO,
+   * Y POR DEFECTO GENERA LA FECHA ACTUAL DEL DIA EN EL QUE EL USUARIO INICIA EL SISTEMA
+   * 
+   * METODO QUE SE ENCARGA MOSTRAR LOS DATOS DE LAS CITAS EN EL DOM
+   */
   get_citas(fecha_actual:Date){
-    this.datosCitas.length = 0;
-    this.IntevaloHoras(fecha_actual);
+    //ESTE FOR SUSTITUYE LA FECHA DE LOS OBJETOS POR LA FECHA SELECCIONAD EN EL CALENDARIO
+    this.datosCitas = this.datosCitas.map<Citas>((cita) => ({
+      id:0,
+      hora: cita.hora,
+      fecha: fecha_actual,
+      nombre_cliente:'',
+      telefono:'',
+      trabajo:''
+    }));
+    
+    this.get_citas_bd();
     for (const item of this.datosCitaApi) {
-      // console.log(this.dateCalendario.toLocaleDateString())
       if(item.fecha === format(fecha_actual, 'YYYY-MM-DD')){
         const indexHora = this.datosCitas.findIndex(cita => cita.hora === item.hora);
         if(indexHora!== -1){
           this.datosCitas[indexHora] ={
+            id : item.id,
             hora: item.hora,
             fecha: fecha_actual,
             nombre_cliente: item.nombre_cliente,
@@ -261,13 +295,15 @@ export class ViewCitasComponent implements OnInit{
       }
     }
   }
+  /**
+   * OBTENEMOS LOS DATOS DESDE LA API
+   */
   get_citas_bd() {
     this.citas$ = this.service.getAllCitas();
     this.citas$.subscribe({
       next: data=> {
         this.datosCitaApi = this.datosCitaApi.concat(data)
-      }//console.log('se agrega dato');
-      ,
+      },
       error: error => console.log('ERROR:'+ error),
       complete: () => console.log('completado'),
     })

@@ -12,4 +12,8 @@ export class ApiCitasService {
   getAllCitas(): Observable<Citas>{
     return this.http.get<Citas>('http://127.0.0.1:8000/api/showCitas');
   }
+
+  addCita(data:Citas){
+    return this.http.post('http://127.0.0.1:8000/api/addCita', data)
+  }
 }

@@ -2,16 +2,16 @@
     <h1>
         CITA
     </h1>
-    <form action="" method="post">
+    <form action="" method="post" (ngSubmit)="OnSubmitAddCita(datosCita)">
         <div class="contenedor_formulario">
             <div class="contenedor_inputs_labels">
                 <div class="contenedor_input_nombre">
                     <label for="inputNombre">NOMBRE:</label>
-                    <input type="text" name="inputNombre" id="inputNombre" [value]="datosCita.nombre_cliente">
+                    <input type="text" name="inputNombre" id="inputNombre" [value]="datosCita.nombre_cliente" [(ngModel)]="datosCita.nombre_cliente">
                 </div>
                 <div class="contenedor_input_hora">
                     <label for="inputTime">Hora:</label>
-                    <input type="datetime" name="inputTime" id="inputTime" [value]="datosCita.hora" disabled>
+                    <input type="datetime" name="inputTime" id="inputTime" [value]="datosCita.hora"  disabled>
                 </div>
                 <div class="contenedor_input_fecha">
                     <label for="inputDate">Fecha:</label>
@@ -19,17 +19,17 @@
                 </div>
                 <div class="contenedor_input_telefono">
                     <label for="inputDate">Telefono:</label>
-                    <input type="tel" name="inputDate" id="inputDate" pattern="^\d{9}$" [value]="datosCita.telefono">
+                    <input type="tel" name="inputDate" id="inputDate" pattern="^\d{9}$" [value]="datosCita.telefono" [(ngModel)]="datosCita.telefono">
                 </div>
                 <div class="contenedor_textArea">
                     <label for="textAreaTrabajo">Trabajo:</label>
-                    <textarea name="textAreaTrabajo" id="textAreaTrabajo" cols="20" rows="5" [value]="datosCita.trabajo"></textarea>
+                    <textarea name="textAreaTrabajo" id="textAreaTrabajo" cols="20" rows="5" [value]="datosCita.trabajo" [(ngModel)]="datosCita.trabajo"></textarea>
                 </div>
             </div>
               
             <div class="contenedor_botones">
-                <p-button label="Agregar Cita" [rounded]="true" severity="success" type="submit"></p-button>
-                <p-button label="ELIMINAR Cita" [rounded]="true" severity="danger" (onClick)="delete_cita()"></p-button>
+                <p-button label="Agregar CITA" [rounded]="true" severity="success" type="submit"></p-button>
+                <p-button label="ELIMINAR CITA" [rounded]="true" severity="danger" (onClick)="delete_cita()"></p-button>
             </div>
         
         </div>
