@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentesPrimengModule, DialogService, DynamicDialogRef} from '../../modulos/componentes-primeng-module/componentes-primeng.module';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, interval } from 'rxjs';
 import { Citas } from '../../interfaces/citas';
 import { ComponenteCuadroDialogoComponent } from '../../componentes/componentesPrimeNg/componente-cuadro-dialogo/componente-cuadro-dialogo.component';
 import { format } from '@formkit/tempo';
@@ -171,11 +171,10 @@ export class ViewCitasComponent implements OnInit{
 //     }
 // ]
 
-
+  private updateData: Subscription = new Subscription;
   datosCitaApi: Citas[] = [];
   public citas$!: Observable<Citas>;
   dateCalendario:Date = new Date();
-  // datecalendario2 = this.dateCalendario;
   dateFormat:string | undefined;
   datosCitas: Citas [] = [];
 
@@ -183,20 +182,13 @@ export class ViewCitasComponent implements OnInit{
   ref: DynamicDialogRef | undefined;
 
   constructor(public dialogService: DialogService, private service:ApiCitasService){}
-  ngOnInit(): void {
- 
-    console.log(this.datosCitas);
-    //this.get_citas_bd();
+  ngOnInit(): void{
     this.IntevaloHoras(new Date());
-    this.get_citas(new Date());
-  
-    
-    //console.log('ARRAY'+this.datosCitaApi)
+    this.get_citas(new Date())
   }
 
   //ESTO SE USA PARA CREAR EL INTERVALO DE HORAS CON UN GAP DE 15 MINUTOS ENTRE CADA HORA
   IntevaloHoras(fecha_actual:Date){
-    //console.log('se ejecuta el metodo intervalo horas');
     let HorasInicio:number = 0;
     let HorasFin:number = 23;
     let intervaloHorasMinutos:number = 15;
@@ -205,7 +197,6 @@ export class ViewCitasComponent implements OnInit{
       for ( let j = 0; j< 60; j += intervaloHorasMinutos){
         let hora= i.toString().padStart(2, "0");
         let minuto = j.toString().padStart(2, "0");
-        // arrayHoras.push(`${hora}:${minuto}`);
         this.datosCitas?.push({
           id:0,
           hora: `${hora}:${minuto}:00`,
@@ -223,9 +214,7 @@ export class ViewCitasComponent implements OnInit{
    * METODO QUE SE USA EN EL DOM PARA OBTENER LA FECHA QUE SELECCIONA EL USUARIO DESDE EL CALENDARIO
    */
   selectDate(){
-    //console.log('fecha_anterior'+this.dateCalendario)
     this.get_citas(this.dateCalendario);
-    //console.log('fecha despues '+ this.dateCalendario)
   }
   
   /**
@@ -233,10 +222,7 @@ export class ViewCitasComponent implements OnInit{
    * le devuelva los datos de esa zona horaria
    */
   getDatoCita(dato:Citas){
-    // alert(dato);
     this.show(dato);
-    //console.log(dato);
-    // console.log(this.ref)
   }
   show(dato:Citas){
     this.ref =  this.dialogService.open(ComponenteCuadroDialogoComponent,
@@ -250,11 +236,8 @@ export class ViewCitasComponent implements OnInit{
 
     this.ref.onClose.subscribe((data:any)=>{
       if(data){
-        console.log(data.fecha)
-        this.get_citas(this.dateCalendario);
-        console.log('esto es lo que recibe el json '+JSON.stringify(data));
         //this.delete_cita(data);
-        console.log('despues de agregar la nueva cita'+JSON.stringify(this.datosCitas))
+        this.get_citas(this.dateCalendario);
       }
     });
   }
@@ -267,7 +250,7 @@ export class ViewCitasComponent implements OnInit{
    * 
    * METODO QUE SE ENCARGA MOSTRAR LOS DATOS DE LAS CITAS EN EL DOM
    */
-  get_citas(fecha_actual:Date){
+  async get_citas(fecha_actual:Date){
     //ESTE FOR SUSTITUYE LA FECHA DE LOS OBJETOS POR LA FECHA SELECCIONAD EN EL CALENDARIO
     this.datosCitas = this.datosCitas.map<Citas>((cita) => ({
       id:0,
@@ -278,7 +261,7 @@ export class ViewCitasComponent implements OnInit{
       trabajo:''
     }));
     
-    this.get_citas_bd();
+    await this.get_citas_bd();
     for (const item of this.datosCitaApi) {
       if(item.fecha === format(fecha_actual, 'YYYY-MM-DD')){
         const indexHora = this.datosCitas.findIndex(cita => cita.hora === item.hora);
@@ -298,15 +281,10 @@ export class ViewCitasComponent implements OnInit{
   /**
    * OBTENEMOS LOS DATOS DESDE LA API
    */
-  get_citas_bd() {
-    this.citas$ = this.service.getAllCitas();
-    this.citas$.subscribe({
-      next: data=> {
-        this.datosCitaApi = this.datosCitaApi.concat(data)
-      },
-      error: error => console.log('ERROR:'+ error),
-      complete: () => console.log('completado'),
-    })
+  async get_citas_bd() {
+    await this.service.getAllCitas().then(value =>{
+      this.datosCitaApi = value;
+    });
   }
 
   // delete_cita(cita_delete:Citas){
