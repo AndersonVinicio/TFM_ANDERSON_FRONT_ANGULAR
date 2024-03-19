@@ -6,6 +6,7 @@ import { format } from '@formkit/tempo';
 import { ApiCitasService } from '../../../services/api-citas.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Console } from 'console';
 
 
 @Component({
@@ -51,9 +52,15 @@ export class ComponenteCuadroDialogoComponent implements OnInit, OnDestroy{
   }
 
 
-  delete_cita(){
+ async delete_cita(){
     if(this.datosCita.nombre_cliente!== '' && this.datosCita.trabajo!==''){
-      this.ref.close(this.datosCita);
+      let respuestaApiDelete
+      console.log(this.datosCita);
+      await this.apiService.deleteCita(this.datosCita.id).then(respuesta=>{
+        respuestaApiDelete = respuesta;
+      });
+      console.log(respuestaApiDelete);
+      this.ref.close(respuestaApiDelete);
     }else{
       alert('NO SE PUEDE ELIMINAR ESTA CITA POR QUE LA HORA ESTA LIBRE');
     }

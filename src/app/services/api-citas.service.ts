@@ -29,9 +29,15 @@ export class ApiCitasService {
   }
 
   addCita(data:Citas){
-    return this.http.post('http://127.0.0.1:8000/api/addCita', data)
+    return this.http.post('http://127.0.0.1:8000/api/addCita', data);
   }
 
+
+  async deleteCita(id:number){
+    const promiseDleteCita = await lastValueFrom(this.http.delete('http://127.0.0.1:8000/api/deleteCita/'+id)) ;
+    return promiseDleteCita
+  }
+  
   emitirAddNuevaCita():void{
     this.NuevaCita.emit();
   }

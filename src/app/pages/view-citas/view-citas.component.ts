@@ -237,6 +237,7 @@ export class ViewCitasComponent implements OnInit{
     this.ref.onClose.subscribe((data:any)=>{
       if(data){
         //this.delete_cita(data);
+        console.log(JSON.stringify(data));
         this.get_citas(this.dateCalendario);
       }
     });
