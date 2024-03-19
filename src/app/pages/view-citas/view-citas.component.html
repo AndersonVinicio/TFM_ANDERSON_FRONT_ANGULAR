@@ -20,11 +20,11 @@
                 </thead>
                 <tbody>
                     @for (dato of datosCitas ; track dato ) {
-                        <tr (click)="getDatoCita(dato)">
-                            <td class="celda-hora" id="hora">{{ dato.hora }}</td>
-                            <td class="celda-nombre" id="nombre">{{ dato.nombre_cliente }}</td>
-                            <td class="celda-telefono">{{ dato.telefono }}</td>
-                            <td class="celda-trabajo">
+                        <tr (click)="getDatoCita(dato)" >
+                            <td class="celda-hora" id="hora" [ngClass]="{'cita_ocupada': dato.id!==0}">{{ dato.hora }}</td>
+                            <td class="celda-nombre" id="nombre" [ngClass]="{'cita_ocupada': dato.id!==0}">{{ dato.nombre_cliente }}</td>
+                            <td class="celda-telefono" [ngClass]="{'cita_ocupada': dato.id!==0}">{{ dato.telefono }}</td>
+                            <td class="celda-trabajo" [ngClass]="{'cita_ocupada': dato.id!==0}">
                                 <div class="contenedor-celda-trabajo" id="trabajo">
                                     <!-- {{ dato.trabajo }} -->
                                     {{dato.trabajo}}

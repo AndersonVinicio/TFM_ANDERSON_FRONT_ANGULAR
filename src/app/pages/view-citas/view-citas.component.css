@@ -64,6 +64,16 @@ div.contenedor-horas table tbody tr td {
   overflow: auto;
 }
 
+/**
+SE LE APLICA LOS ESTILOS AL TD POR QUE SI SE LO APLICAMOS AL TR COJE LOS ESTILOS GENERICOS QEU SON ESTOS 
+div.contenedor-horas table tbody tr:nth-child(even), POR ESO SE LE APLICA A LOS TD.
+ESTE ESTILO SOLO SE APLICA SI ES HORA ESTA OCUPADA
+*/
+td.cita_ocupada {
+  background-color: red;
+  color: #fffffe;
+}
+
 div.contenedor-horas table tbody tr:nth-child(even) {
   background-color: rgb(148, 142, 142, 0.2);
 }
@@ -83,6 +93,7 @@ div.contenedor-horas header {
 td {
   text-align: center;
 }
+
 /* 
 .celda-hora {
   background-color: rebeccapurple;

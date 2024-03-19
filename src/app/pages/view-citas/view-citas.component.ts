@@ -5,6 +5,7 @@ import { Citas } from '../../interfaces/citas';
 import { ComponenteCuadroDialogoComponent } from '../../componentes/componentesPrimeNg/componente-cuadro-dialogo/componente-cuadro-dialogo.component';
 import { format } from '@formkit/tempo';
 import { ApiCitasService } from '../../services/api-citas.service';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -17,7 +18,8 @@ import { ApiCitasService } from '../../services/api-citas.service';
   // imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatIconModule],
   imports: [
     ComponentesPrimengModule,
-    ComponenteCuadroDialogoComponent  
+    ComponenteCuadroDialogoComponent,
+    CommonModule 
   ],
   providers:[
     DialogService,
@@ -288,23 +290,4 @@ export class ViewCitasComponent implements OnInit{
     });
   }
 
-  // delete_cita(cita_delete:Citas){
-  //   const index_cita_delete = this.BD_PRUEBA.findIndex(
-  //     cita =>
-  //     cita.fecha === cita_delete.fecha && 
-  //     cita.hora === cita_delete.hora &&
-  //     cita.nombre === cita_delete.nombre_cliente &&
-  //     cita.trabajo === cita_delete.trabajo)
-  //   if(index_cita_delete !== -1){
-  //     //console.log(index_cita_delete);
-  //     this.BD_PRUEBA[index_cita_delete] = {
-  //         hora: cita_delete.hora,
-  //         fecha: cita_delete.fecha.toString(),
-  //         nombre: '',
-  //         trabajo: '',
-  //         telefono: ''
-  //     }
-  //     //console.log(JSON.stringify(this.BD_PRUEBA[index_cita_delete]));
-  //   }
-  // }
 }
