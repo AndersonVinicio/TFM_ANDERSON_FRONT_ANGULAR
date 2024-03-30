@@ -28,8 +28,8 @@
             </div>
               
             <div class="contenedor_botones">
-                <p-button label="AGREGAR CITA" [rounded]="true" severity="success" type="submit"></p-button>
-                <p-button label="ELIMINAR CITA" [rounded]="true" severity="danger" (onClick)="delete_cita()"></p-button>
+                <p-button label="AGREGAR CITA" [rounded]="true" severity="success" type="submit" [disabled]="datosCita.id !== 0"></p-button>
+                <p-button label="ELIMINAR CITA" [rounded]="true" severity="danger" (onClick)="delete_cita()" [disabled]="datosCita.id === 0"></p-button>
             </div>
         
         </div>

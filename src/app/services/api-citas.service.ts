@@ -9,9 +9,6 @@ import { Citas } from '../interfaces/citas';
 export class ApiCitasService {
 
   constructor(private http: HttpClient) { }
-
-  NuevaCita: EventEmitter<Citas[]> = new EventEmitter<Citas[]>();
-
   /**
    * 
    * @returns 
@@ -38,7 +35,4 @@ export class ApiCitasService {
     return promiseDleteCita
   }
   
-  emitirAddNuevaCita():void{
-    this.NuevaCita.emit();
-  }
 }
